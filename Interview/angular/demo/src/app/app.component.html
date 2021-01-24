@@ -1,0 +1,51 @@
+<!-- <div class="row">
+  <div class="col bg-success">
+    <input type="button" value="get" (click)="getInfo()" />
+  </div>
+  <div class="col bg-info">
+    <form #addFor="ngForm" (ngSubmit)="addInfo()">
+      <input type="date" name="date" [(ngModel)]="dto.Date">
+      <input type="number" name="temp" placeholder="temp" [(ngModel)]="dto.TemperatureC">
+      <input type="text" name="summary" placeholder="summary" [(ngModel)]="dto.Summary">
+      <button type="submit">add</button>
+    </form>
+  </div>
+  <div class="col bg-danger">
+    <app-update></app-update>
+  </div>
+</div> -->
+<div class="row">
+  <div class="col">
+    <!-- <button (click)="getInfo()">get uni</button> -->
+    <div *ngFor="let item of userUnicorns">
+      {{ item.name }}
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col">manage unicorn</div>
+  <div class="col">
+    <form #uniForm="ngForm" (ngSubmit)="manageUnicorn()">
+      <select
+        *ngIf="owners && owners.length > 0"
+        name="owners"
+        [(ngModel)]="selectedOwner"
+        (change)="onChange($event.target.value)"
+      >
+        <option *ngFor="let owner of owners" [value]="owner.id">
+          {{ owner.name }}
+        </option>
+      </select>
+      <select
+        *ngIf="owners && owners.length > 0"
+        name="owners"
+        [(ngModel)]="selectedUnicorn"
+      >
+        <option *ngFor="let unicorn of unicorns" [value]="unicorn.id">
+          {{ unicorn.name }}
+        </option>
+      </select>
+      <button type="submit">Update</button>
+    </form>
+  </div>
+</div>
